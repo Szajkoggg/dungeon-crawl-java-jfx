@@ -18,8 +18,7 @@ public class MovementGenerator {
         } else {
             y = isPositiveCoordinateValueChange()?++y:--y;
         }
-        int[] coordinates = {x,y};
-        return coordinates;
+        return new int[]{x,y};
     }
 
     public boolean isMovingOnXAxis() {

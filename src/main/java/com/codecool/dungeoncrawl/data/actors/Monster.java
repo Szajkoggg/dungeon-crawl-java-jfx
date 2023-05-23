@@ -10,7 +10,6 @@ public abstract class Monster extends Actor{
     }
 
     public int[] getMovementCoordinates(MovementGenerator movementGenerator, int turnCounter) {
-        int[] coordinates = {0,0};
-        return coordinates;
+        return new int[]{0,0};
     }
 }

@@ -3,8 +3,6 @@ package com.codecool.dungeoncrawl.data.actors;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.logic.moves.MovementGenerator;
 
-import java.lang.module.ModuleFinder;
-
 
 public class Bat extends Monster{
     public Bat(Cell cell) {

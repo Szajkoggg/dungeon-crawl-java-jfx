@@ -7,7 +7,7 @@ import com.codecool.dungeoncrawl.data.objects.Item;
 import java.util.List;
 
 public class GameLogic {
-    private GameMap map;
+    private final GameMap map;
 
     public GameLogic() {
         this.map = MapLoader.loadMap();

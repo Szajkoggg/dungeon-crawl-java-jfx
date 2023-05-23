@@ -1,16 +1,12 @@
 package com.codecool.dungeoncrawl.logic;
 
-import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.ui.UI;
 import com.codecool.dungeoncrawl.ui.keyeventhandler.*;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.stage.Stage;
 
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
+
 
 public class Game extends Application {
     private UI ui;
@@ -34,7 +30,7 @@ public class Game extends Application {
         primaryStage.setTitle("Dungeon Crawl");
         primaryStage.show();
 
-        monsterLogic.moveMonsters();
+        monsterLogic.runMonsterLogic();
 
     }
 

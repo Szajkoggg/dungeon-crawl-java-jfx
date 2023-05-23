@@ -1,7 +1,6 @@
 package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.data.actors.Actor;
 import com.codecool.dungeoncrawl.data.actors.Monster;
 import com.codecool.dungeoncrawl.logic.moves.MovementGenerator;
 import javafx.concurrent.Task;
@@ -13,42 +12,51 @@ import com.codecool.dungeoncrawl.ui.UI;
 
 public class MonsterLogic {
 
-    private UI ui;
+    private final UI ui;
 
-    private GameLogic logic;
+    private final GameLogic logic;
 
-    private MovementGenerator movementGenerator;
+    private final MovementGenerator movementGenerator;
 
-    private Random random;
+    private final Random random;
+
+    private int turnCounter;
 
     public MonsterLogic(UI ui, GameLogic logic) {
         this.ui=ui;
         this.logic=logic;
         random = new Random();
         movementGenerator = new MovementGenerator(random);
+        turnCounter = 0;
     }
 
-    public void moveMonsters() {
+    public void runMonsterLogic() {
         GameMap map = logic.getMap();
         Task turnCounter = new Task<Void>() {
             @Override
             public Void call() throws InterruptedException {
                 boolean isRunning = true;
-                int turnCounter = 0;
                 while (isRunning) {
                     Set<Monster> monsters = map.getMonsters();
                     for (Monster monster : monsters) {
-                        int[] coordinates = monster.getMovementCoordinates(movementGenerator, turnCounter);
-                        monster.move(coordinates[0], coordinates[1]);
+                        moveMonster(monster);
                     }
                     ui.refresh();
                     TimeUnit.SECONDS.sleep(1);
-                    turnCounter++;
+                    addTurn();
                 }
                 return null;
             }
         };
-
         new Thread(turnCounter).start();
+    }
+
+    public void moveMonster(Monster monster) {
+        int[] coordinates = monster.getMovementCoordinates(movementGenerator, turnCounter);
+        monster.move(coordinates[0], coordinates[1]);
+    }
+
+    public void addTurn(){
+        turnCounter++;
     }
 }
