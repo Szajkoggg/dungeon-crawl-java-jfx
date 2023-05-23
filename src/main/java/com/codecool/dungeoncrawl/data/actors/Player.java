@@ -20,7 +20,7 @@ public class Player extends Actor {
     @Override
     public void move(int dx, int dy) {
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
-        if (nextCell.isPassable()) {
+        if (nextCell.isPassable() && nextCell.getActor() == null) {
             this.getCell().setActor(null);
             nextCell.setActor(this);
             this.setCell(nextCell);
