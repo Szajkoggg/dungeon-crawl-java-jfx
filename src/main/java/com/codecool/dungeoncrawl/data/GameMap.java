@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.data;
 
 import com.codecool.dungeoncrawl.data.actors.Actor;
+import com.codecool.dungeoncrawl.data.actors.Monster;
 import com.codecool.dungeoncrawl.data.actors.Player;
 
 import java.util.HashSet;
@@ -13,12 +14,12 @@ public class GameMap {
 
     private Player player;
 
-    private Set<Actor> monsters;
+    private Set<Monster> monsters;
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
         this.height = height;
-        this.monsters = new HashSet<>();
+        monsters = new HashSet<>();
         cells = new Cell[width][height];
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -39,11 +40,11 @@ public class GameMap {
         return player;
     }
 
-    public void addMonster(Actor monster) {
+    public void addMonster(Monster monster) {
         monsters.add(monster);
     }
 
-    public Set<Actor> getMonsters(){
+    public Set<Monster> getMonsters(){
         return monsters;
     }
 

@@ -7,10 +7,13 @@ import javafx.stage.Stage;
 
 import java.util.Set;
 
+
 public class Game extends Application {
     private UI ui;
     private GameLogic logic;
     private Set<KeyHandler> keyHandlers;
+
+    private MonsterLogic monsterLogic;
 
     public static void main(String[] args) {
         launch(args);
@@ -21,9 +24,17 @@ public class Game extends Application {
         this.keyHandlers = Set.of(new Up(), new Down(), new Left(), new Right());
         this.logic = new GameLogic();
         this.ui = new UI(logic, keyHandlers);
+        this.monsterLogic = new MonsterLogic(ui, logic);
         ui.setUpPain(primaryStage);
 
         primaryStage.setTitle("Dungeon Crawl");
         primaryStage.show();
+
+        monsterLogic.runMonsterLogic();
+
     }
+
+
+
+
 }
