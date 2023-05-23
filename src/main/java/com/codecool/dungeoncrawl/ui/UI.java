@@ -42,7 +42,8 @@ public class UI {
 
     private void onKeyPressed(KeyEvent keyEvent) {
         for (KeyHandler keyHandler : keyHandlers) {
-            keyHandler.perform(keyEvent, logic.getMap());
+
+                keyHandler.perform(keyEvent, logic.getMap());
         }
         refresh();
     }

@@ -45,6 +45,9 @@ public class Cell implements Drawable {
     public String getTileName() {
         return type.getTileName();
     }
+    public boolean isPassable() {
+        return type.isPassable();
+    }
 
     public int getX() {
         return x;
