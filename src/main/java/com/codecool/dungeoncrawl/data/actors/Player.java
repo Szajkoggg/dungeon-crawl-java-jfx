@@ -33,4 +33,8 @@ public class Player extends Actor {
     public void addItem(Item item) {
         inventory.add(item);
     }
+
+    public List<Item> getInventory () {
+        return inventory;
+    }
 }
