@@ -17,6 +17,8 @@ public class Game extends Application {
     private GameLogic logic;
     private Set<KeyHandler> keyHandlers;
 
+    private MonsterLogic monsterLogic;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -26,32 +28,17 @@ public class Game extends Application {
         this.keyHandlers = Set.of(new Up(), new Down(), new Left(), new Right());
         this.logic = new GameLogic();
         this.ui = new UI(logic, keyHandlers);
+        this.monsterLogic = new MonsterLogic(ui, logic);
         ui.setUpPain(primaryStage);
 
         primaryStage.setTitle("Dungeon Crawl");
         primaryStage.show();
 
-
-        GameMap map = logic.getMap();
-        Task task = new Task<Void>() {
-            @Override
-            public Void call() throws InterruptedException {
-                boolean isRunning = true;
-                while (isRunning) {
-                    Set<Actor> monsters = map.getMonsters();
-                    for (Actor monster : monsters) {
-                        monster.move(0, 1);
-                    }
-                    ui.refresh();
-                    TimeUnit.SECONDS.sleep(1);
-                }
-                return null;
-            }
-        };
-
-        new Thread(task).start();
+        monsterLogic.moveMonsters();
 
     }
+
+
 
 
 }
