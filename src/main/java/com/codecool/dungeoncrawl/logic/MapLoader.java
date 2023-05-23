@@ -40,15 +40,15 @@ public class MapLoader {
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
-                            new Skeleton(cell);
+                            map.addMonster(new Skeleton(cell));
                             break;
                         case 'g':
                             cell.setType(CellType.FLOOR);
-                            new Ghost(cell);
+                            map.addMonster(new Ghost(cell));
                             break;
                         case 'b':
                             cell.setType(CellType.FLOOR);
-                            new Bat(cell);
+                            map.addMonster(new Bat(cell));
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
