@@ -31,14 +31,12 @@ public class Game extends Application {
         primaryStage.setTitle("Dungeon Crawl");
         primaryStage.show();
 
-        //MonsterLogic monsterLogic = new MonsterLogic(ui, logic);
 
         GameMap map = logic.getMap();
         Task task = new Task<Void>() {
             @Override
             public Void call() throws InterruptedException {
                 boolean isRunning = true;
-
                 while (isRunning) {
                     Set<Actor> monsters = map.getMonsters();
                     for (Actor monster : monsters) {
