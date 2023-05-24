@@ -72,6 +72,8 @@ public class Player extends Actor {
         if (inventory.stream().anyMatch(e -> e.getTileName().equals("phial"))) {
             monster.decreaseHealth(monster.health);
             monster.getCell().setActor(null);
+        } else {
+            decreaseHealth(monster.getDamage());
         }
     }
 

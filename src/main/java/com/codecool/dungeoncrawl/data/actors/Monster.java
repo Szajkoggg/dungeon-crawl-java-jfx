@@ -4,7 +4,7 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.logic.moves.MovementGenerator;
 
 public abstract class Monster extends Actor{
-    private int damage;
+    private final int damage;
 
     public Monster(Cell cell) {
         super(cell);

@@ -21,25 +21,25 @@ public class UI {
     private final GameLogic logic;
     private final Set<KeyHandler> keyHandlers;
 
-    int VISION_RADIUS = 5;
-    int CANVAS_X_OFFSET = 13;
-    int CANVAS_Y_OFFSET = 18;
-    int CANVAS_HEIGHT = 30;
-    int CANVAS_WIDTH = 30;
-    int MAP_X_OFFSET_INITIAL = 10;
-    int MAP_Y_OFFSET_INITIAL = 2;
-    int CANVAS_SCALE = 2;
+    private final int VISION_RADIUS = 5;
+    private final int CANVAS_X_OFFSET = 10;
+    private final int CANVAS_Y_OFFSET = 12;
+    private final int CANVAS_HEIGHT = 20;
+    private final int CANVAS_WIDTH = 20;
+    private final int MAP_X_OFFSET_INITIAL = 5;
+    private final int MAP_Y_OFFSET_INITIAL = -3;
+    private final double CANVAS_SCALE = 2;
 
-    int mapXOffset;
-    int mapYOffset;
-    int playerX;
-    int playerY;
-    int prevPlayerX;
-    int prevPlayerY;
-    int leftDrawBorder;
-    int rightDrawBorder;
-    int topDrawBorder;
-    int bottomDrawBorder;
+    private int mapXOffset;
+    private int mapYOffset;
+    private int playerX;
+    private int playerY;
+    private int prevPlayerX;
+    private int prevPlayerY;
+    private int leftDrawBorder;
+    private int rightDrawBorder;
+    private int topDrawBorder;
+    private int bottomDrawBorder;
 
     public UI(GameLogic logic, Set<KeyHandler> keyHandlers) {
         this.canvas = new Canvas(CANVAS_WIDTH*Tiles.TILE_WIDTH,CANVAS_HEIGHT*Tiles.TILE_WIDTH);
@@ -74,7 +74,6 @@ public class UI {
         fillContext();
         setPlayerCoordinates();
         moveMap();
-        //moveCanvas();
         setDrawBorders();
         draw();
         mainStage.setHealthLabelText(logic.getPlayerHealth());
@@ -124,8 +123,8 @@ public class UI {
 
     private void setDrawBorders() {
         leftDrawBorder = Math.max(playerX - VISION_RADIUS, 0);
-        rightDrawBorder = playerX+VISION_RADIUS <= logic.getMapWidth() ? playerX+VISION_RADIUS : (int) logic.getMapWidth();
+        rightDrawBorder = playerX+VISION_RADIUS+1 <= logic.getMapWidth() ? playerX+VISION_RADIUS+1 : (int) logic.getMapWidth();
         topDrawBorder = Math.max(playerY - VISION_RADIUS, 0);
-        bottomDrawBorder = playerY+VISION_RADIUS <= logic.getMapHeight() ? playerY+VISION_RADIUS : (int) logic.getMapHeight();
+        bottomDrawBorder = playerY+VISION_RADIUS+1 <= logic.getMapHeight() ? playerY+VISION_RADIUS+1 : (int) logic.getMapHeight();
     }
 }
