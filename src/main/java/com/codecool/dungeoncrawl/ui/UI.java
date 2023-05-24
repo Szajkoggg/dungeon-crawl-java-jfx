@@ -14,18 +14,27 @@ import javafx.stage.Stage;
 import java.util.Set;
 
 public class UI {
-    private Canvas canvas;
-    private GraphicsContext context;
+    private final Canvas canvas;
+    private final GraphicsContext context;
 
-    private MainStage mainStage;
-    private GameLogic logic;
-    private Set<KeyHandler> keyHandlers;
+    private final MainStage mainStage;
+    private final GameLogic logic;
+    private final Set<KeyHandler> keyHandlers;
 
+    int VISION_RADIUS = 30;
+    int CANVAS_X_OFFSET = 18;
+    int CANVAS_Y_OFFSET = 13;
+    int CANVAS_HEIGHT = 30;
+    int CANVAS_WIDTH = 30;
+    int playerX;
+    int playerY;
+    int leftDrawBorder;
+    int rightDrawBorder;
+    int topDrawBorder;
+    int bottomDrawBorder;
 
     public UI(GameLogic logic, Set<KeyHandler> keyHandlers) {
-        this.canvas = new Canvas(
-                logic.getMapWidth() * Tiles.TILE_WIDTH,
-                logic.getMapHeight() * Tiles.TILE_WIDTH);
+        this.canvas = new Canvas(CANVAS_WIDTH*Tiles.TILE_WIDTH,CANVAS_HEIGHT*Tiles.TILE_WIDTH);
         this.logic = logic;
         this.context = canvas.getGraphicsContext2D();
         this.mainStage = new MainStage(canvas);
@@ -48,10 +57,17 @@ public class UI {
     }
 
     public void refresh() {
-        context.setFill(Color.BLACK);
-        context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        for (int x = 0; x < logic.getMapWidth(); x++) {
-            for (int y = 0; y < logic.getMapHeight(); y++) {
+        setPlayerCoordinates();
+        moveCanvas();
+        setDrawBorders();
+        draw();
+        mainStage.setHealthLabelText(logic.getPlayerHealth());
+        mainStage.setInventoryLabelText(logic.getPlayerInventory());
+    }
+
+    private void draw() {
+        for (int x = leftDrawBorder; x < rightDrawBorder; x++) {
+            for (int y = topDrawBorder; y < bottomDrawBorder; y++) {
                 Cell cell = logic.getCell(x, y);
                 if (cell.getActor() != null) {
                     Tiles.drawTile(context, cell.getActor(), x, y);
@@ -62,7 +78,27 @@ public class UI {
                 }
             }
         }
-        mainStage.setHealthLabelText(logic.getPlayerHealth());
-        mainStage.setInventoryLabelText(logic.getPlayerInventory());
+    }
+
+    private void fillContext() {
+        context.setFill(Color.BLACK);
+        context.fillRect(0,0, canvas.getWidth(), canvas.getHeight());
+    }
+
+    private void moveCanvas() {
+        canvas.setTranslateX((CANVAS_X_OFFSET*Tiles.TILE_WIDTH)-playerX*Tiles.TILE_WIDTH);
+        canvas.setTranslateY((CANVAS_Y_OFFSET*Tiles.TILE_WIDTH)-playerY*Tiles.TILE_WIDTH);
+    }
+
+    private void setPlayerCoordinates() {
+        playerX = logic.getMap().getPlayer().getX();
+        playerY = logic.getMap().getPlayer().getY();
+    }
+
+    private void setDrawBorders() {
+        leftDrawBorder = Math.max(playerX - VISION_RADIUS, 0);
+        rightDrawBorder = playerX+VISION_RADIUS <= logic.getMapWidth() ? playerX+VISION_RADIUS : (int) logic.getMapWidth();
+        topDrawBorder = Math.max(playerY - VISION_RADIUS, 0);
+        bottomDrawBorder = playerY+VISION_RADIUS <= logic.getMapHeight() ? playerY+VISION_RADIUS : (int) logic.getMapHeight();
     }
 }
