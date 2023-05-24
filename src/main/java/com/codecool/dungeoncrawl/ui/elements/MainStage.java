@@ -19,8 +19,7 @@ public class MainStage {
     }
 
     private Scene setUpScene() {
-        BorderPane borderPane = statusPane.build();
-        borderPane.setCenter(canvas);
+        BorderPane borderPane = statusPane.build(canvas);
         Scene scene = new Scene(borderPane);
         return scene;
     }

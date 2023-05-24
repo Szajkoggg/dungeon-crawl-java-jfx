@@ -22,12 +22,20 @@ public class UI {
     private final Set<KeyHandler> keyHandlers;
 
     int VISION_RADIUS = 30;
-    int CANVAS_X_OFFSET = 18;
-    int CANVAS_Y_OFFSET = 13;
+    int CANVAS_X_OFFSET = 13;
+    int CANVAS_Y_OFFSET = 18;
     int CANVAS_HEIGHT = 30;
     int CANVAS_WIDTH = 30;
+
+    int MAP_X_OFFSET = 10;
+
+    int MAP_Y_OFFSET = 0;
     int playerX;
     int playerY;
+
+    int prevPlayerX;
+
+    int prevPlayerY;
     int leftDrawBorder;
     int rightDrawBorder;
     int topDrawBorder;
@@ -39,6 +47,8 @@ public class UI {
         this.context = canvas.getGraphicsContext2D();
         this.mainStage = new MainStage(canvas);
         this.keyHandlers = keyHandlers;
+        prevPlayerX = logic.getMap().getPlayer().getX();
+        prevPlayerY = logic.getMap().getPlayer().getY();
     }
 
     public void setUpPain(Stage primaryStage) {
@@ -57,12 +67,16 @@ public class UI {
     }
 
     public void refresh() {
+        fillContext();
         setPlayerCoordinates();
-        moveCanvas();
+        MAP_X_OFFSET += prevPlayerX-playerX;
+        MAP_Y_OFFSET += prevPlayerY-playerY;
+        //moveCanvas();
         setDrawBorders();
         draw();
         mainStage.setHealthLabelText(logic.getPlayerHealth());
         mainStage.setInventoryLabelText(logic.getPlayerInventory());
+        setPrevPlayerCoordinates();
     }
 
     private void draw() {
@@ -70,11 +84,11 @@ public class UI {
             for (int y = topDrawBorder; y < bottomDrawBorder; y++) {
                 Cell cell = logic.getCell(x, y);
                 if (cell.getActor() != null) {
-                    Tiles.drawTile(context, cell.getActor(), x, y);
+                    Tiles.drawTile(context, cell.getActor(), x+MAP_X_OFFSET, y+MAP_Y_OFFSET);
                 } else if (cell.getItem() != null) {
-                    Tiles.drawTile(context, cell.getItem(), x, y);
+                    Tiles.drawTile(context, cell.getItem(), x+MAP_X_OFFSET, y+MAP_Y_OFFSET);
                 } else {
-                    Tiles.drawTile(context, cell, x, y);
+                    Tiles.drawTile(context, cell, x+MAP_X_OFFSET, y+MAP_Y_OFFSET);
                 }
             }
         }
@@ -93,6 +107,11 @@ public class UI {
     private void setPlayerCoordinates() {
         playerX = logic.getMap().getPlayer().getX();
         playerY = logic.getMap().getPlayer().getY();
+    }
+
+    private void setPrevPlayerCoordinates() {
+        prevPlayerX = playerX;
+        prevPlayerY = playerY;
     }
 
     private void setDrawBorders() {
