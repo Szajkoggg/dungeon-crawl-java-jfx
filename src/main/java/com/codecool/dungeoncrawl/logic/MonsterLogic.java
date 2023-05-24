@@ -5,6 +5,8 @@ import com.codecool.dungeoncrawl.data.actors.Monster;
 import com.codecool.dungeoncrawl.logic.moves.MovementGenerator;
 import javafx.concurrent.Task;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -38,9 +40,15 @@ public class MonsterLogic {
                 boolean isRunning = true;
                 while (isRunning) {
                     Set<Monster> monsters = map.getMonsters();
+                    List<Monster> deadMonsters = new ArrayList<>();
                     for (Monster monster : monsters) {
-                        moveMonster(monster);
+                        if (monster.getHealth() > 0) {
+                            moveMonster(monster);
+                        } else {
+                            deadMonsters.add(monster);
+                        }
                     }
+                    monsters.removeAll(deadMonsters);
                     ui.refresh();
                     TimeUnit.SECONDS.sleep(1);
                     addTurn();
