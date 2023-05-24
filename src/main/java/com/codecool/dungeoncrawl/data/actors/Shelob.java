@@ -4,10 +4,11 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.logic.moves.MovementGenerator;
 
 public class Shelob extends Monster{
-    int moveOnEveryNthTurn;
+    private final int MOVE_ON_EVERY_NTH_TURN = 2;
+    private final int FOLLOW_DISTANCE = 4;
+    private final int DAMAGE = 10;
     public Shelob(Cell cell) {
         super(cell);
-        moveOnEveryNthTurn = 2;
     }
 
     @Override
@@ -16,10 +17,12 @@ public class Shelob extends Monster{
     }
     @Override
     public int[] getMovementCoordinates(MovementGenerator movementGenerator, int turnCounter) {
-        int[] coordinates = {0,0};
-        if (turnCounter % moveOnEveryNthTurn == 0) {
-            coordinates = movementGenerator.moveOneTileInRandomDirection();
-        }
-        return coordinates;
+        if (turnCounter % MOVE_ON_EVERY_NTH_TURN == 0) {
+            return movementGenerator.moveTowardsHero(cell.getX(),cell.getY(), FOLLOW_DISTANCE);
+        } else return new int[]{0,0};
+    }
+    @Override
+    public int getDamage() {
+        return DAMAGE;
     }
 }

@@ -28,7 +28,7 @@ public class MonsterLogic {
         this.ui=ui;
         this.logic=logic;
         random = new Random();
-        movementGenerator = new MovementGenerator(random);
+        movementGenerator = new MovementGenerator(random, logic);
         turnCounter = 0;
     }
 
@@ -50,7 +50,7 @@ public class MonsterLogic {
                     }
                     deadMonsters.forEach(monsters::remove);
                     ui.refresh();
-                    TimeUnit.SECONDS.sleep(1);
+                    TimeUnit.MILLISECONDS.sleep(500);
                     addTurn();
                 }
                 return null;
