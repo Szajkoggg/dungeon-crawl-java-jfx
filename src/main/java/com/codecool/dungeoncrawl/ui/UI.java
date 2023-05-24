@@ -21,20 +21,20 @@ public class UI {
     private final GameLogic logic;
     private final Set<KeyHandler> keyHandlers;
 
-    int VISION_RADIUS = 30;
+    int VISION_RADIUS = 5;
     int CANVAS_X_OFFSET = 13;
     int CANVAS_Y_OFFSET = 18;
     int CANVAS_HEIGHT = 30;
     int CANVAS_WIDTH = 30;
+    int MAP_X_OFFSET_INITIAL = 10;
+    int MAP_Y_OFFSET_INITIAL = 2;
+    int CANVAS_SCALE = 2;
 
-    int MAP_X_OFFSET = 10;
-
-    int MAP_Y_OFFSET = 0;
+    int mapXOffset;
+    int mapYOffset;
     int playerX;
     int playerY;
-
     int prevPlayerX;
-
     int prevPlayerY;
     int leftDrawBorder;
     int rightDrawBorder;
@@ -49,6 +49,10 @@ public class UI {
         this.keyHandlers = keyHandlers;
         prevPlayerX = logic.getMap().getPlayer().getX();
         prevPlayerY = logic.getMap().getPlayer().getY();
+        mapXOffset = MAP_X_OFFSET_INITIAL;
+        mapYOffset = MAP_Y_OFFSET_INITIAL;
+        canvas.setScaleX(CANVAS_SCALE);
+        canvas.setScaleY(CANVAS_SCALE);
     }
 
     public void setUpPain(Stage primaryStage) {
@@ -69,8 +73,7 @@ public class UI {
     public void refresh() {
         fillContext();
         setPlayerCoordinates();
-        MAP_X_OFFSET += prevPlayerX-playerX;
-        MAP_Y_OFFSET += prevPlayerY-playerY;
+        moveMap();
         //moveCanvas();
         setDrawBorders();
         draw();
@@ -84,11 +87,11 @@ public class UI {
             for (int y = topDrawBorder; y < bottomDrawBorder; y++) {
                 Cell cell = logic.getCell(x, y);
                 if (cell.getActor() != null) {
-                    Tiles.drawTile(context, cell.getActor(), x+MAP_X_OFFSET, y+MAP_Y_OFFSET);
+                    Tiles.drawTile(context, cell.getActor(), x+ mapXOffset, y+ mapYOffset);
                 } else if (cell.getItem() != null) {
-                    Tiles.drawTile(context, cell.getItem(), x+MAP_X_OFFSET, y+MAP_Y_OFFSET);
+                    Tiles.drawTile(context, cell.getItem(), x+ mapXOffset, y+ mapYOffset);
                 } else {
-                    Tiles.drawTile(context, cell, x+MAP_X_OFFSET, y+MAP_Y_OFFSET);
+                    Tiles.drawTile(context, cell, x+ mapXOffset, y+ mapYOffset);
                 }
             }
         }
@@ -97,6 +100,11 @@ public class UI {
     private void fillContext() {
         context.setFill(Color.BLACK);
         context.fillRect(0,0, canvas.getWidth(), canvas.getHeight());
+    }
+
+    private void moveMap() {
+        mapXOffset += prevPlayerX-playerX;
+        mapYOffset += prevPlayerY-playerY;
     }
 
     private void moveCanvas() {
