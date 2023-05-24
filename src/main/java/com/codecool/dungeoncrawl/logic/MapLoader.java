@@ -3,11 +3,10 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.data.actors.Bat;
-import com.codecool.dungeoncrawl.data.actors.Ghost;
-import com.codecool.dungeoncrawl.data.actors.Player;
-import com.codecool.dungeoncrawl.data.actors.Skeleton;
+import com.codecool.dungeoncrawl.data.actors.*;
+import com.codecool.dungeoncrawl.data.objects.Gholum;
 import com.codecool.dungeoncrawl.data.objects.Key;
+import com.codecool.dungeoncrawl.data.objects.Phial;
 import com.codecool.dungeoncrawl.data.objects.Sword;
 
 import java.io.InputStream;
@@ -57,6 +56,9 @@ public class MapLoader {
                         case 'j':
                             cell.setType(CellType.CLOSED);
                             break;
+                        case 'n':
+                            cell.setType(CellType.CAVE);
+                            break;
                         case 'p':
                             cell.setType(CellType.FLOOR);
                             new Sword(cell);
@@ -64,6 +66,19 @@ public class MapLoader {
                         case 'k':
                             cell.setType(CellType.FLOOR);
                             new Key(cell);
+                            break;
+                        case 'á':
+                            cell.setType(CellType.FLOOR);
+                            new Gholum(cell);
+                            new Golum(cell);
+                            break;
+                        case 'o':
+                            cell.setType(CellType.FLOOR);
+                            new Phial(cell);
+                            break;
+                        case 'r':
+                            cell.setType(CellType.FLOOR);
+                            map.addMonster(new Shelob(cell));
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");

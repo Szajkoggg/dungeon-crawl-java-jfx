@@ -5,6 +5,7 @@ public enum CellType {
     FLOOR("floor", true),
     WALL("wall", false),
     CLOSED("closed", false),
+    CAVE("cave", false),
     OPENED("opened", true);
     private final String tileName;
     private final boolean passable;
