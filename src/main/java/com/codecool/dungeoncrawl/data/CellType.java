@@ -3,7 +3,9 @@ package com.codecool.dungeoncrawl.data;
 public enum CellType {
     EMPTY("empty", true),
     FLOOR("floor", true),
-    WALL("wall", false);
+    WALL("wall", false),
+    CLOSED("closed", false),
+    OPENED("opened", true);
     private final String tileName;
     private final boolean passable;
 
