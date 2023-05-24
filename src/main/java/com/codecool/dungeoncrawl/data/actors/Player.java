@@ -3,16 +3,19 @@ package com.codecool.dungeoncrawl.data.actors;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.objects.Item;
+import com.codecool.dungeoncrawl.data.objects.Weapon;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Player extends Actor {
     private final List<Item> inventory;
+    private int baseAttackPower;
 
     public Player(Cell cell) {
         super(cell);
         this.inventory = new ArrayList<>();
+        this.baseAttackPower = 5;
     }
 
     public String getTileName() {
@@ -59,9 +62,11 @@ public class Player extends Actor {
     }
 
     private int getAttackPower() {
-        return inventory
+        return baseAttackPower + inventory
                 .stream()
-                .anyMatch(e -> e.getTileName().equals("sword")) ? 7 : 5; //get dmg from item
+                .filter(e -> e instanceof Weapon)
+                .mapToInt(e -> ((Weapon) e).getDamage())
+                .sum();
     }
 
     private void addItem(Item item) {
