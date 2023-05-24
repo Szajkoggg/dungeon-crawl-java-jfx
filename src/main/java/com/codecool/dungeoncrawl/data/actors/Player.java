@@ -51,7 +51,7 @@ public class Player extends Actor {
     private void attackMonster(Monster monster) {
         monster.decreaseHealth(getAttackPower());
         if (monster.getHealth() > 0) {
-            decreaseHealth(2); //monster.getDamage()
+            decreaseHealth(monster.getDamage());
         }
         if (monster.getHealth() <= 0) {
             monster.getCell().setActor(null);

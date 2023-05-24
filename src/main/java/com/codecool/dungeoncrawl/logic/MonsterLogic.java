@@ -48,7 +48,7 @@ public class MonsterLogic {
                             deadMonsters.add(monster);
                         }
                     }
-                    monsters.removeAll(deadMonsters);
+                    deadMonsters.forEach(monsters::remove);
                     ui.refresh();
                     TimeUnit.SECONDS.sleep(1);
                     addTurn();
