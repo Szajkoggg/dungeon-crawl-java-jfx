@@ -21,7 +21,13 @@ public class Player extends Actor {
 
     @Override
     public void move(int dx, int dy) {
-        openDoor(dx, dy);
+        Cell nextCell = cell.getNeighbor(dx, dy);
+        if (nextCell.getType().equals(CellType.CLOSED)) {
+            openDoor(nextCell);
+        }
+        if (nextCell.getActor() instanceof Monster) {
+            attackMonster(nextCell);
+        }
         super.move(dx, dy);
         pickUpItem();
     }
@@ -33,13 +39,29 @@ public class Player extends Actor {
         }
     }
 
-    private void openDoor(int dx, int dy) {
-        Cell nextCell = cell.getNeighbor(dx, dy);
+    private void openDoor(Cell nextCell) {
         if (nextCell.getType().equals(CellType.CLOSED) && inventory
                 .stream()
                 .anyMatch(e -> e.getTileName().equals("key"))) {
             nextCell.setType(CellType.OPENED);
         }
+    }
+
+    private void attackMonster(Cell nextCell) {
+        Monster monster = (Monster) nextCell.getActor();
+        monster.decreaseHealth(getAttackPower());
+        if (monster.getHealth() > 0) {
+            decreaseHealth(2);
+        }
+        if (monster.getHealth() <= 0) {
+            nextCell.setActor(null);
+        }
+    }
+
+    private int getAttackPower() {
+        return inventory
+                .stream()
+                .anyMatch(e -> e.getTileName().equals("sword")) ? 7 : 5;
     }
 
     private void addItem(Item item) {
