@@ -6,8 +6,8 @@ import com.codecool.dungeoncrawl.data.Drawable;
 import java.util.Objects;
 
 public abstract class Actor implements Drawable {
-    private Cell cell;
-    private int health = 10;
+    protected Cell cell;
+    protected int health = 10;
 
     public Actor(Cell cell) {
         this.cell = cell;

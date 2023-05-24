@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player extends Actor {
-    private List<Item> inventory;
+    private final List<Item> inventory;
     public Player(Cell cell) {
         super(cell);
         this.inventory = new ArrayList<>();
@@ -24,12 +24,12 @@ public class Player extends Actor {
     }
 
     private void pickUpItem() {
-        if (this.getCell().getItem() != null) {
-            this.addItem(this.getCell().getItem());
-            this.getCell().setItem(null);
+        if (cell.getItem() != null) {
+            addItem(cell.getItem());
+            cell.setItem(null);
         }
     }
-    public void addItem(Item item) {
+    private void addItem(Item item) {
         inventory.add(item);
     }
 
