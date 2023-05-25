@@ -5,13 +5,14 @@ public enum CellType {
     FLOOR("floor", true),
     GRASS("grass", true),
     WALL("wall", false),
-    BEAUTY("beauty",false),
+    BEAUTY("beauty", false),
     FOREST("forest", false),
-    DEADFOREST("deadforest",false),
-    MARSHROCK("marshrock",true),
+    DEADFOREST("deadforest", false),
+    MARSHROCK("marshrock", true),
     CLOSED("closed", false),
     CAVE("cave", false),
-    OPENED("opened", true);
+    OPENED("opened", true),
+    MT_DOOM("mt_doom", true);
     private final String tileName;
     private final boolean passable;
 

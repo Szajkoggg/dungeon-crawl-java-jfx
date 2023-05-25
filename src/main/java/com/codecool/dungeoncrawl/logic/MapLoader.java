@@ -63,7 +63,7 @@ public class MapLoader {
                             break;
                         case 'k':
                             cell.setType(CellType.GRASS);
-                            new Key(cell);
+                            new Ring(cell);
                             break;
                         case 'á':
                             cell.setType(CellType.MARSHROCK);
@@ -113,6 +113,9 @@ public class MapLoader {
                         case 'a':
                             cell.setType(CellType.FLOOR);
                             new Apple(cell);
+                            break;
+                        case 'é':
+                            cell.setType(CellType.MT_DOOM);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
