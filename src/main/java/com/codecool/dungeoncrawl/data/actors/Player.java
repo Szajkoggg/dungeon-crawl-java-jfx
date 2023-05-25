@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Player extends Actor {
     private final List<Item> inventory;
-    private int baseAttackPower;
+    private final int baseAttackPower;
 
     public Player(Cell cell) {
         super(cell);
@@ -55,15 +55,17 @@ public class Player extends Actor {
         }
     }
 
-    private void openDoor(Cell nextCell) {
-        if (nextCell.getType().equals(CellType.CAVE) && inventory
+    private boolean isItemInInventory(String itemName) {
+        return inventory
                 .stream()
-                .anyMatch(e -> e.getTileName().equals("gholum"))) {
+                .anyMatch(e -> e.getTileName().equals(itemName));
+    }
+
+    private void openDoor(Cell nextCell) {
+        if (nextCell.getType().equals(CellType.CAVE) && isItemInInventory("gholum")) {
             nextCell.setType(CellType.OPENED);
         }
-        if (nextCell.getType().equals(CellType.CLOSED) && inventory
-                .stream()
-                .anyMatch(e -> e.getTileName().equals("key"))) {
+        if (nextCell.getType().equals(CellType.CLOSED) && isItemInInventory("ring")) {
             nextCell.setType(CellType.OPENED);
         }
     }
@@ -109,6 +111,7 @@ public class Player extends Actor {
     }
 
     public boolean isGameWon() {
-        return false;
+        return getCell().getType().equals(CellType.MT_DOOM) && isItemInInventory("ring");
+
     }
 }

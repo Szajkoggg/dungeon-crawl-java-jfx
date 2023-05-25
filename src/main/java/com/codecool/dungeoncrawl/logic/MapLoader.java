@@ -63,7 +63,7 @@ public class MapLoader {
                             break;
                         case 'k':
                             cell.setType(CellType.GRASS);
-                            new Key(cell);
+                            new Ring(cell);
                             break;
                         case 'á':
                             cell.setType(CellType.MARSHROCK);
