@@ -7,6 +7,7 @@ import com.codecool.dungeoncrawl.ui.keyeventhandler.KeyHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -16,6 +17,7 @@ import java.util.Set;
 public class UI {
     private final Canvas canvas;
     private final GraphicsContext context;
+    private Stage primaryStage;
 
     private final MainStage mainStage;
     private final GameLogic logic;
@@ -57,6 +59,7 @@ public class UI {
 
     public void setUpPain(Stage primaryStage) {
         Scene scene = mainStage.getScene();
+        this.primaryStage = primaryStage;
         primaryStage.setScene(scene);
         logic.setup();
         refresh();
@@ -71,6 +74,23 @@ public class UI {
     }
 
     public void refresh() {
+        if (logic.isGameWon()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Game Over");
+            alert.setHeaderText(null);
+            alert.setContentText("Congratulations, you won!");
+
+            alert.showAndWait();
+            primaryStage.close();
+        } else if (Integer.parseInt(logic.getPlayerHealth()) <= 0) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Game Over");
+            alert.setHeaderText(null);
+            alert.setContentText("You died.");
+
+            alert.showAndWait();
+            primaryStage.close();
+        }
         fillContext();
         setPlayerCoordinates();
         moveMap();
@@ -133,5 +153,9 @@ public class UI {
         rightDrawBorder = playerX+VISION_RADIUS+1 <= logic.getMapWidth() ? playerX+VISION_RADIUS+1 : (int) logic.getMapWidth();
         topDrawBorder = Math.max(playerY - VISION_RADIUS, 0);
         bottomDrawBorder = playerY+VISION_RADIUS+1 <= logic.getMapHeight() ? playerY+VISION_RADIUS+1 : (int) logic.getMapHeight();
+    }
+
+    private boolean isPlayerDead () {
+        return Integer.parseInt(logic.getPlayerHealth()) <= 0;
     }
 }

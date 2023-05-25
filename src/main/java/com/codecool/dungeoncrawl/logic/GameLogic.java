@@ -34,8 +34,8 @@ public class GameLogic {
 
     public List<Item> getPlayerInventory() {return map.getPlayer().getInventory(); }
 
+    public boolean isGameWon() { return map.getPlayer().isGameWon(); }
     public int getPlayerBaseDamage() {return map.getPlayer().getBaseAttackPower();}
-
 
     public GameMap getMap() {
         return map;

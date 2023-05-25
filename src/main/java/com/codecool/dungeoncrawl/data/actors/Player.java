@@ -107,4 +107,8 @@ public class Player extends Actor {
     public int getBaseAttackPower() {
         return baseAttackPower;
     }
+
+    public boolean isGameWon() {
+        return false;
+    }
 }
