@@ -2,7 +2,9 @@ package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
+import com.codecool.dungeoncrawl.data.objects.Apple;
 import com.codecool.dungeoncrawl.data.objects.Item;
+import com.codecool.dungeoncrawl.data.objects.Potion;
 import com.codecool.dungeoncrawl.data.objects.Weapon;
 
 import java.util.ArrayList;
@@ -35,7 +37,15 @@ public class Player extends Actor {
             }
         }
         super.move(dx, dy);
+        pickUpHeal();
         pickUpItem();
+    }
+
+    private void pickUpHeal() {
+        if (cell.getItem() instanceof Potion) {
+            increaseHealth(((Apple) cell.getItem()).getHEALING());
+            cell.setItem(null);
+        }
     }
 
     private void pickUpItem() {
