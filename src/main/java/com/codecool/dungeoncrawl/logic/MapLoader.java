@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.*;
+import com.codecool.dungeoncrawl.data.beauty.*;
 import com.codecool.dungeoncrawl.data.objects.Gholum;
 import com.codecool.dungeoncrawl.data.objects.Key;
 import com.codecool.dungeoncrawl.data.objects.Phial;
@@ -38,11 +39,11 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             break;
                         case 's':
-                            cell.setType(CellType.FLOOR);
+                            cell.setType(CellType.MARSHROCK);
                             map.addMonster(new Skeleton(cell));
                             break;
                         case 'g':
-                            cell.setType(CellType.FLOOR);
+                            cell.setType(CellType.MARSHROCK);
                             map.addMonster(new Ghost(cell));
                             break;
                         case 'b':
@@ -64,21 +65,53 @@ public class MapLoader {
                             new Sword(cell);
                             break;
                         case 'k':
-                            cell.setType(CellType.FLOOR);
+                            cell.setType(CellType.GRASS);
                             new Key(cell);
                             break;
                         case 'á':
-                            cell.setType(CellType.FLOOR);
+                            cell.setType(CellType.MARSHROCK);
                             new Gholum(cell);
                             new Golum(cell);
                             break;
                         case 'o':
-                            cell.setType(CellType.FLOOR);
+                            cell.setType(CellType.MARSHROCK);
                             new Phial(cell);
                             break;
                         case 'r':
                             cell.setType(CellType.FLOOR);
                             map.addMonster(new Shelob(cell));
+                            break;
+                        case 'w':
+                            cell.setType(CellType.BEAUTY);
+                            new Gandalf(cell);
+                            break;
+                        case 'f':
+                            cell.setType(CellType.FOREST);
+                            break;
+                        case 'h':
+                            cell.setType(CellType.BEAUTY);
+                            new HobbitHouse(cell);
+                            break;
+                        case 'q':
+                            cell.setType(CellType.GRASS);
+                            break;
+                        case 'd':
+                            cell.setType(CellType.BEAUTY);
+                            new Rivendell(cell);
+                            break;
+                        case 'e':
+                            cell.setType(CellType.DEADFOREST);
+                            break;
+                        case '-':
+                            cell.setType(CellType.MARSHROCK);
+                            break;
+                        case 't':
+                            cell.setType(CellType.BEAUTY);
+                            new Bones(cell);
+                            break;
+                        case 'z':
+                            cell.setType(CellType.BEAUTY);
+                            new Web(cell);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
