@@ -32,6 +32,10 @@ public class MainStage {
         this.statusPane.setHealthValue(text);
     }
 
+    public void setDamageValueText(List<Item> inventory, int baseAttackPower) {
+        this.statusPane.setDamageValue(inventory, baseAttackPower);
+    }
+
     public void setInventoryLabelText(List<Item> inventory) {
         this.statusPane.setInventoryList(inventory);
     }

@@ -103,4 +103,8 @@ public class Player extends Actor {
     public List<Item> getInventory() {
         return inventory;
     }
+
+    public int getBaseAttackPower() {
+        return baseAttackPower;
+    }
 }

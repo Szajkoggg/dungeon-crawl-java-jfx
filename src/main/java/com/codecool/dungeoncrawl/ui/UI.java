@@ -76,8 +76,7 @@ public class UI {
         moveMap();
         setDrawBorders();
         draw();
-        mainStage.setHealthLabelText(logic.getPlayerHealth());
-        mainStage.setInventoryLabelText(logic.getPlayerInventory());
+        setStatusSidePanel();
         setPrevPlayerCoordinates();
     }
 
@@ -96,6 +95,12 @@ public class UI {
                 }
             }
         }
+    }
+
+    private void setStatusSidePanel() {
+        mainStage.setHealthLabelText(logic.getPlayerHealth());
+        mainStage.setInventoryLabelText(logic.getPlayerInventory());
+        mainStage.setDamageValueText(logic.getPlayerInventory(), logic.getPlayerBaseDamage());
     }
 
     private void fillContext() {
