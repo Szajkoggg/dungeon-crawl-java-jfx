@@ -114,6 +114,9 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             new Apple(cell);
                             break;
+                        case 'é':
+                            cell.setType(CellType.MT_DOOM);
+                            break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }

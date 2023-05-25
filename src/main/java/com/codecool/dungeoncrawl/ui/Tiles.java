@@ -40,16 +40,17 @@ public class Tiles {
         tileMap.put("shelob", new Tile(30, 5));
         tileMap.put("golum", new Tile(25, 2));
         tileMap.put("cave", new Tile(4, 13));
-        tileMap.put("wizard",new Tile(24,1));
-        tileMap.put("forest",new Tile(3,1));
-        tileMap.put("hobbithouse",new Tile(19,10));
-        tileMap.put("grass", new Tile(5,0));
-        tileMap.put("rivendell", new Tile(5,19));
-        tileMap.put("deadforest", new Tile(6,2));
-        tileMap.put("marshrock", new Tile(1,0));
-        tileMap.put("bones", new Tile(0,15));
-        tileMap.put("web", new Tile(2,15));
-        tileMap.put("apple", new Tile(15,29));
+        tileMap.put("wizard", new Tile(24, 1));
+        tileMap.put("forest", new Tile(3, 1));
+        tileMap.put("hobbithouse", new Tile(19, 10));
+        tileMap.put("grass", new Tile(5, 0));
+        tileMap.put("rivendell", new Tile(5, 19));
+        tileMap.put("deadforest", new Tile(6, 2));
+        tileMap.put("marshrock", new Tile(1, 0));
+        tileMap.put("bones", new Tile(0, 15));
+        tileMap.put("web", new Tile(2, 15));
+        tileMap.put("apple", new Tile(15, 29));
+        tileMap.put("mt_doom", new Tile(18, 6));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
