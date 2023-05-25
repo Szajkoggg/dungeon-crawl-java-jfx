@@ -4,7 +4,7 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.logic.moves.MovementGenerator;
 
 public class Shelob extends Monster{
-    private final int MOVE_ON_EVERY_NTH_TURN = 2;
+    private final int MOVE_ON_EVERY_NTH_TURN = 3;
     private final int FOLLOW_DISTANCE = 4;
     private final int DAMAGE = 10;
     public Shelob(Cell cell) {

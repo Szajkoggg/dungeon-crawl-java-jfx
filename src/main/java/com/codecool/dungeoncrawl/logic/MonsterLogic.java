@@ -50,7 +50,7 @@ public class MonsterLogic {
                     }
                     deadMonsters.forEach(monsters::remove);
                     ui.refresh();
-                    TimeUnit.MILLISECONDS.sleep(500);
+                    TimeUnit.MILLISECONDS.sleep(250);
                     addTurn();
                 }
                 return null;

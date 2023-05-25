@@ -3,7 +3,12 @@ package com.codecool.dungeoncrawl.data;
 public enum CellType {
     EMPTY("empty", true),
     FLOOR("floor", true),
+    GRASS("grass", true),
     WALL("wall", false),
+    BEAUTY("beauty",false),
+    FOREST("forest", false),
+    DEADFOREST("deadforest",false),
+    MARSHROCK("marshrock",true),
     CLOSED("closed", false),
     CAVE("cave", false),
     OPENED("opened", true);

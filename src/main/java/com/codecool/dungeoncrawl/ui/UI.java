@@ -27,7 +27,7 @@ public class UI {
     private final int CANVAS_HEIGHT = 20;
     private final int CANVAS_WIDTH = 20;
     private final int MAP_X_OFFSET_INITIAL = 5;
-    private final int MAP_Y_OFFSET_INITIAL = -3;
+    private final int MAP_Y_OFFSET_INITIAL = -8;
     private final double CANVAS_SCALE = 2;
 
     private int mapXOffset;
@@ -89,6 +89,8 @@ public class UI {
                     Tiles.drawTile(context, cell.getActor(), x+ mapXOffset, y+ mapYOffset);
                 } else if (cell.getItem() != null) {
                     Tiles.drawTile(context, cell.getItem(), x+ mapXOffset, y+ mapYOffset);
+                } else if (cell.getBeauty() != null) {
+                    Tiles.drawTile(context, cell.getBeauty(), x+mapXOffset, y+mapYOffset);
                 } else {
                     Tiles.drawTile(context, cell, x+ mapXOffset, y+ mapYOffset);
                 }

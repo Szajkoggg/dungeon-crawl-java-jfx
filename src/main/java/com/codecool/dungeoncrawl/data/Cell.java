@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.data;
 
 import com.codecool.dungeoncrawl.data.actors.Actor;
+import com.codecool.dungeoncrawl.data.beauty.Beauty;
 import com.codecool.dungeoncrawl.data.objects.Item;
 
 public class Cell implements Drawable {
@@ -8,6 +9,7 @@ public class Cell implements Drawable {
     private Actor actor;
     private Item item;
     private GameMap gameMap;
+    private Beauty beauty;
     private int x, y;
 
     public Cell(GameMap gameMap, int x, int y, CellType type) {
@@ -36,6 +38,10 @@ public class Cell implements Drawable {
     public void setItem(Item item) {this.item = item;}
 
     public Item getItem() { return item; }
+
+    public void setBeauty(Beauty beauty) {this.beauty = beauty;}
+
+    public Beauty getBeauty() { return beauty; }
 
     public Cell getNeighbor(int dx, int dy) {
         return gameMap.getCell(x + dx, y + dy);
