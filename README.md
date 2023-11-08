@@ -49,7 +49,7 @@ Gábor Szajkó - [@Gábor Szajkó_LinkedIn](https://www.linkedin.com/in/szajk%C3
 Bence Bánik - [@Bence Bánik_LinkedIn](https://www.linkedin.com/in/bence-banik?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BsPTihu%2B4TIKezI%2F5ebXncQ%3D%3D)  
 Attila Kálmán - [@Attila Kálmán_LinkedIn](https://www.linkedin.com/in/attilaklmn/)  
 
-Project Link: [https://github.com/Szajkoggg/dungeon-crawl-java-jfx]https://github.com/Szajkoggg/dungeon-crawl-java-jfx
+Project Link: [https://github.com/Szajkoggg/dungeon-crawl-java-jfx](https://github.com/Szajkoggg/dungeon-crawl-java-jfx)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
