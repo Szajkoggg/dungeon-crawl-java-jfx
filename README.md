@@ -35,8 +35,8 @@ This JavaFX project is created as an OOP practice. The goal was to create a func
 It utilizes modern automation strategies including the following:
 
 * Java
-*Maven
-*JavaFX
+* Maven
+* JavaFX
 * Layer Separation model
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p
